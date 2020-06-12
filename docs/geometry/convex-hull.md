@@ -39,13 +39,13 @@
 ```cpp
 // stk[]是整型，存的是下标
 // p[]存储向量或点
-tp = 0;                       //初始化栈
-std::sort(p + 1, p + 1 + n);  //对点进行排序
-stk[++tp] =
-    1;  //栈内添加第一个元素，且不更新used，使得1在最后封闭凸包时也对单调栈更新
+tp = 0;                       // 初始化栈
+std::sort(p + 1, p + 1 + n);  // 对点进行排序
+stk[++tp] = 1;
+//栈内添加第一个元素，且不更新used，使得1在最后封闭凸包时也对单调栈更新
 for (int i = 2; i <= n; ++i) {
-  while (tp >= 2 && (p[stk[tp]] - p[stk[tp - 1]]) * (p[i] - p[stk[tp]]) <=
-                        1)  //此处*被重载为叉积
+  while (tp >= 2  // 下一行*被重载为叉积
+         && (p[stk[tp]] - p[stk[tp - 1]]) * (p[i] - p[stk[tp]]) <= 0)
     used[stk[tp--]] = 0;
   used[i] = 1;  // used表示在凸壳上
   stk[++tp] = i;
@@ -59,7 +59,7 @@ for (int i = n - 1; i > 0; --i)
     used[i] = 1;
     stk[++tp] = i;
   }
-for (int i = 1; i <= tp; ++i)  //复制到新数组中去
+for (int i = 1; i <= tp; ++i)  // 复制到新数组中去
   h[i] = p[stk[i]];
 int ans = tp - 1;
 ```
@@ -74,10 +74,10 @@ $$
 
  [UVA11626 Convex Hull](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=78&page=show_problem&problem=2673) 
 
- [洛谷 P2742\[USACO5.1\]圈奶牛 Fencing the Cows](https://www.luogu.org/problemnew/show/P2742) 
+ [「USACO5.1」圈奶牛 Fencing the Cows](https://www.luogu.com.cn/problem/P2742) 
 
  [POJ1873 The Fortified Forest](http://poj.org/problem?id=1873) 
 
  [POJ1113 Wall](http://poj.org/problem?id=1113) 
 
- [洛谷 P3829\[SHOI2012\]信用卡凸包](https://www.luogu.org/problemnew/show/P3829) 
+ [「SHOI2012」信用卡凸包](https://www.luogu.com.cn/problem/P3829) 

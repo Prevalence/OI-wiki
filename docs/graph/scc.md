@@ -1,6 +1,6 @@
 ## 简介
 
-在阅读下列内容之前，请务必了解 [图论基础](/graph/basic) 部分。
+在阅读下列内容之前，请务必了解 [图论相关概念](./concept.md) 中的基础部分。
 
 强连通的定义是：有向图 G 强连通是指，G 中任意两个结点连通。
 
@@ -63,7 +63,7 @@ Tarjan 发明了很多算法结构。光 Tarjan 算法就有很多，比如求�
         for each (u,v) then do
             if v hasn't been search then
                 TARJAN_SEARCH(v) // 搜索
-                low[u]=min(low[u],low[v])// 回溯
+                low[u]=min(low[u],low[v]) // 回溯
             else if v has been in the stack then
                 low[u]=min(low[u],dfn[v])
 
@@ -74,22 +74,32 @@ Tarjan 发明了很多算法结构。光 Tarjan 算法就有很多，比如求�
 ### 实现
 
 ```cpp
-int dfn[N], low[N], dfncnt, s[N], tp;
+int dfn[N], low[N], dfncnt, s[N], in_stack[N], tp;
 int scc[N], sc;  // 结点 i 所在 scc 的编号
 int sz[N];       // 强连通 i 的大小
 void tarjan(int u) {
-  low[u] = dfn[u] = ++dfncnt, s[++tp] = u;
+  low[u] = dfn[u] = ++dfncnt, s[++tp] = u, in_stack[u] = 1;
   for (int i = h[u]; i; i = e[i].nex) {
     const int &v = e[i].t;
-    if (!dfn[v])
-      tarjan(v), low[u] = min(low[u], low[v]);
-    else if (!scc[v])
+    if (!dfn[v]) {
+      tarjan(v);
+      low[u] = min(low[u], low[v]);
+    } else if (in_stack[v]) {
       low[u] = min(low[u], dfn[v]);
+    }
   }
   if (dfn[u] == low[u]) {
     ++sc;
-    while (s[tp] != u) scc[s[tp]] = sc, sz[sc]++, --tp;
-    scc[s[tp]] = sc, sz[sc]++, --tp;
+    while (s[tp] != u) {
+      scc[s[tp]] = sc;
+      sz[sc]++;
+      in_stack[s[tp]] = 0;
+      --tp;
+    }
+    scc[s[tp]] = sc;
+    sz[sc]++;
+    in_stack[s[tp]] = 0;
+    --tp;
   }
 }
 ```
@@ -131,7 +141,7 @@ void kosaraju() {
   for (int i = n; i >= 1; --i)
     if (!color[s[i]]) {
       ++sccCnt;
-      dfs2(s[i])
+      dfs2(s[i]);
     }
 }
 ```
@@ -150,6 +160,6 @@ DAG 好啊，能拓扑排序了就能做很多事情了。
 
 ## 推荐题目
 
- [USACO Fall/HAOI 2006 受欢迎的牛](https://www.lydsy.com/JudgeOnline/problem.php?id=1051) 
+ [USACO Fall/HAOI 2006 受欢迎的牛](https://loj.ac/problem/10091) 
 
  [POJ1236 Network of Schools](http://poj.org/problem?id=1236) 

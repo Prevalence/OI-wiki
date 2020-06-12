@@ -1,12 +1,12 @@
 ## 介绍
 
-形如 $ax \equiv b \pmod c$ 的方程被称为 **线性同余方程** (Congruence Equation)。
+形如 $ax \equiv c \pmod b$ 的方程被称为 **线性同余方程** (Congruence Equation)。
 
- [\[NOIp 2012\]同余方程](https://www.luogu.org/problemnew/show/P1082) 
+ [「NOIP2012」同余方程](https://loj.ac/problem/2605) 
 
 ## 求解方法
 
-根据以下两个定理，我们可以求出同余方程 $ax \equiv b \pmod c$ 的解。
+根据以下两个定理，我们可以求出同余方程 $ax \equiv c \pmod b$ 的解。
 
 定理 1：
 
@@ -16,9 +16,9 @@
 
 定理 2：
 
-> 若 $\gcd(a,b)=1$ ，且 $x_0,y_0$ 为方程 $ax+by=c$ 的一组解，则该方程的任意解可表示为： $x=x_0+bt,y=y_0+at$ , 且对任意整数 $t$ 都成立。
+> 若 $\gcd(a,b)=1$ ，且 $x_0,y_0$ 为方程 $ax+by=c$ 的一组解，则该方程的任意解可表示为： $x=x_0+bt,y=y_0-at$ , 且对任意整数 $t$ 都成立。
 
-根据定理 2，可以求出方程的所有解。但在实际问题中，我们往往被要求求出一个最小整数解，也就是一个特解 $x,t=b/\gcd(a,b),x=(x \mod t+t)\mod t$ 。
+根据定理 2，可以求出方程的所有解。但在实际问题中，我们往往被要求求出一个最小整数解，也就是一个特解 $x,t=b/\gcd(a,b),x=(x \bmod t+t) \bmod t$ 。
 
 代码：
 

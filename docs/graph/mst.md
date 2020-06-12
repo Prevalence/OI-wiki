@@ -1,6 +1,6 @@
 ## 定义
 
-在阅读下列内容之前，请务必阅读 [图论基础](/graph/basic) 与 [树基础](/graph/tree-basic) 部分，并了解以下定义：
+在阅读下列内容之前，请务必阅读 [图论相关概念](./concept.md) 与 [树基础](./tree-basic.md) 部分，并了解以下定义：
 
 1.  生成子图
 2.  生成树
@@ -15,7 +15,7 @@ Kruskal 算法是一种常见并且好写的最小生成树算法，由 Kruskal 
 
 ### 前置知识
 
- [并查集](../ds/dsu.md) 、 [贪心](../basic/greedy.md) 、 [图的存储](./basic.md) 。
+ [并查集](../ds/dsu.md) 、 [贪心](../basic/greedy.md) 、 [图的存储](./save.md) 。
 
 ### 证明
 
@@ -183,8 +183,8 @@ $$
 
 ## 习题
 
--    [「HAOI2006」聪明的猴子](https://www.lydsy.com/JudgeOnline/problem.php?id=2429) 
--    [「SCOI2005」繁忙的都市](https://www.lydsy.com/JudgeOnline/problem.php?id=1083) 
+-    [「HAOI2006」聪明的猴子](https://www.luogu.com.cn/problem/P2504) 
+-    [「SCOI2005」繁忙的都市](https://loj.ac/problem/2149) 
 
 ## 最小生成树的唯一性
 
@@ -683,7 +683,7 @@ int main() {
     }
     ```
 
-??? note "[NOI 2018 归程](https://www.luogu.org/problem/P4768)"
+??? note "[NOI 2018 归程](https://uoj.ac/problem/393)"
     首先预处理出来每一个点到根节点的最短路。
 
     我们构造出来根据海拔的最大生成树。显然每次询问可以到达的节点是在最小生成树和询问点的最小边权 $\geq p$ 的节点。

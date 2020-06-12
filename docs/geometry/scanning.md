@@ -44,18 +44,18 @@
 #define maxn 300
 using namespace std;
 
-int lazy[maxn << 3];  //标记了这条线段出现的次数
+int lazy[maxn << 3];  // 标记了这条线段出现的次数
 double s[maxn << 3];
 
 struct node1 {
   double l, r;
   double sum;
-} cl[maxn << 3];  //线段树
+} cl[maxn << 3];  // 线段树
 
 struct node2 {
   double x, y1, y2;
   int flag;
-} p[maxn << 3];  //坐标
+} p[maxn << 3];  // 坐标
 
 //定义sort比较
 bool cmp(node2 a, node2 b) { return a.x < b.x; }
@@ -99,11 +99,11 @@ void update(int rt, double y1, double y2, int flag) {
 }
 
 int main() {
-  int temp = 1, n, i, j;
+  int temp = 1, n;
   double x1, y1, x2, y2, ans;
   while (scanf("%d", &n) && n) {
     ans = 0;
-    for (i = 0; i < n; i++) {
+    for (int i = 0; i < n; i++) {
       scanf("%lf %lf %lf %lf", &x1, &y1, &x2, &y2);
       p[i].x = x1;
       p[i].y1 = y1;
@@ -116,12 +116,12 @@ int main() {
       s[i + 1] = y1;
       s[i + n + 1] = y2;
     }
-    sort(s + 1, s + (2 * n + 1));  //离散化
-    sort(p, p + 2 * n, cmp);  //把矩形的边的纵坐标从小到大排序
-    build(1, 1, 2 * n);       //建树
+    sort(s + 1, s + (2 * n + 1));  // 离散化
+    sort(p, p + 2 * n, cmp);  // 把矩形的边的纵坐标从小到大排序
+    build(1, 1, 2 * n);       // 建树
     memset(lazy, 0, sizeof(lazy));
     update(1, p[0].y1, p[0].y2, p[0].flag);
-    for (i = 1; i < 2 * n; i++) {
+    for (int i = 1; i < 2 * n; i++) {
       ans += (p[i].x - p[i - 1].x) * cl[1].sum;
       update(1, p[i].y1, p[i].y2, p[i].flag);
     }

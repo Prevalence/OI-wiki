@@ -103,11 +103,11 @@ C 语言有一个库函数叫做 `atan2(double y,double x)` ，可以返回 $\th
 ```cpp
 friend bool operator<(seg x, seg y) {
   db t1 = atan2((x.b - x.a).y, (x.b - x.a).x);
-  db t2 = atan2((y.b - y.a).y, (y.b - y.a).x);  //求极角
-  if (fabs(t1 - t2) > eps)                      //如果极角不等
+  db t2 = atan2((y.b - y.a).y, (y.b - y.a).x);  // 求极角
+  if (fabs(t1 - t2) > eps)                      // 如果极角不等
     return t1 < t2;
   return (y.a - x.a) * (y.b - x.a) >
-         eps;  //判断向量x在y的哪边，令最靠左的排在最左边
+         eps;  // 判断向量x在y的哪边，令最靠左的排在最左边
 }
 ```
 
@@ -122,21 +122,21 @@ friend bool operator<(seg x, seg y) {
 //求的是向量左侧的半平面
 int l = 0, r = 0;
 for (int i = 1; i <= n; ++i)
-  if ((s[i] == s[i - 1]) == false) {
-    //注意要先检查队尾
+  if (s[i] != s[i - 1]) {
+    // 注意要先检查队尾
     while (r - l > 1 && (s[i].b - t[r]) * (s[i].a - t[r]) >
-                            eps)  //如果上一个交点在向量右侧则弹出队尾
+                            eps)  // 如果上一个交点在向量右侧则弹出队尾
       --r;
     while (r - l > 1 && (s[i].b - t[l + 2]) * (s[i].a - t[l + 2]) >
-                            eps)  //如果第一个交点在向量右侧则弹出队首
+                            eps)  // 如果第一个交点在向量右侧则弹出队首
       ++l;
     q[++r] = s[i];
-    if (r - l > 1) t[r] = its(q[r], q[r - 1]);  //求新交点
+    if (r - l > 1) t[r] = its(q[r], q[r - 1]);  // 求新交点
   }
 while (r - l > 1 &&
-       (q[l + 1].b - t[r]) * (q[l + 1].a - t[r]) > eps)  //注意删除多余元素
+       (q[l + 1].b - t[r]) * (q[l + 1].a - t[r]) > eps)  // 注意删除多余元素
   --r;
-t[r + 1] = its(q[l + 1], q[r]);  //再求出新的交点
+t[r + 1] = its(q[l + 1], q[r]);  // 再求出新的交点
 ++r;
 //这里不能在t里面++r需要注意一下……
 ```
@@ -147,4 +147,4 @@ t[r + 1] = its(q[l + 1], q[r]);  //再求出新的交点
 
  [POJ 1279 Art Gallery](http://poj.org/problem?id=1279) 求多边形的核
 
- [\[CQOI2006\]凸多边形](https://www.lydsy.com/JudgeOnline/problem.php?id=2618) 
+ [「CQOI2006」凸多边形](https://www.luogu.com.cn/problem/P4196) 

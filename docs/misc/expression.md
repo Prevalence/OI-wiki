@@ -10,7 +10,7 @@ author: Ir1d, Anguei, hsfzLZH1, siger-young, HeRaNO
 
 递归的方法是把表达式拆分成如图所示的表达式树，然后在树结构上自底向上进行运算。![](./images/bet.png)
 
-表达式树上进行 [树的遍历](/graph/traverse/#dfs_3) 可以得到不同类型的表达式
+表达式树上进行 [树的遍历](../graph/tree-basic.md#_10) 可以得到不同类型的表达式
 
 -   前序遍历对应前缀表达式（波兰式）
 -   中序遍历对应中缀表达式
@@ -89,5 +89,5 @@ int calc(const std::string &s) {  // 计算转换好的后缀表达式
 ## 习题
 
 1.   [表达式求值（NOIP2013）](https://vijos.org/p/1849) 
-2.   [后缀表达式](https://www.luogu.org/problemnew/show/P1449) 
+2.   [后缀表达式](https://www.luogu.com.cn/problem/P1449) 
 3.   [Transform the Expression](https://www.spoj.com/problems/ONP/) 

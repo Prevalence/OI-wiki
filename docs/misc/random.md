@@ -55,7 +55,8 @@ int main() {
 
 内部使用的随机数生成器默认为 `rand()` 。当然也可以传入自定义的随机数生成器。
 
-!!! warning `random_shuffle` 已于 C++14 标准中被弃用，于 C++17 标准中被移除。
+!!! warning
+     `random_shuffle` 已于 C++14 标准中被弃用，于 C++17 标准中被移除。
 
 ### shuffle
 
@@ -63,7 +64,7 @@ int main() {
 
 区别在于必须使用自定义的随机数生成器： `std::shuffle(first, last, myrand())` 。
 
-下面是用 `rand()` 及 `random_shuffle()` 编写的一个数据生成器。生成数据为 [「ZJOI2012」灾难](https://www.luogu.org/problemnew/show/P2597) 的随机小数据。
+下面是用 `rand()` 及 `random_shuffle()` 编写的一个数据生成器。生成数据为 [「ZJOI2012」灾难](https://www.luogu.com.cn/problem/P2597) 的随机小数据。
 
 ```cpp
 #include <algorithm>
@@ -89,7 +90,7 @@ int main() {
 
 ## Example I
 
-先来看一道网络流题： [「TJOI2015」线性代数](https://www.lydsy.com/JudgeOnline/problem.php?id=3996) 。
+先来看一道网络流题： [「TJOI2015」线性代数](https://loj.ac/problem/2100) 。
 
 我们并不想写网络流，于是开始偷税。建模？不存在的。
 

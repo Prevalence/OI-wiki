@@ -109,6 +109,8 @@ vector<int> z_function(string s) {
 
 最后，如果必要（即如果 $i + z[i] - 1 > r$ ），我们更新最右匹配段 $[l;r]$ 。
 
+需要注意的是， `for` 循环中 $i$ 的起始位置是从 $1$ 开始的，这是因为如果从 $0$ 开始，匹配段 $[l;r]$ 将在第一次循环中被设置为平凡的 $[0;n - 1]$ ，从而退化成 $O(n^2)$ 的朴素算法。
+
 ## 算法的渐进行为
 
 我们将证明上述算法的运行时间关于字符串长度呈线性 -- 即其时间复杂度为 $O(n)$ 。
@@ -193,9 +195,9 @@ vector<int> z_function(string s) {
 
 ## 练习题目
 
--    [Codeforces - Password\[Difficulty: Easy\]](http://codeforces.com/problemset/problem/126/B) 
--    [UVA # 455 "Periodic Strings"\[Difficulty: Medium\]](http://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=396) 
--    [UVA # 11022 "String Factoring"\[Difficulty: Medium\]](http://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=1963) 
+-    [CF126B Password](http://codeforces.com/problemset/problem/126/B) 
+-    [UVA # 455 Periodic Strings](http://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=396) 
+-    [UVA # 11022 String Factoring](http://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=1963) 
 -    [UVa 11475 - Extend to Palindrome](http://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=2470) 
 -    [LA 6439 - Pasti Pas!](https://icpcarchive.ecs.baylor.edu/index.php?option=com_onlinejudge&Itemid=8&category=588&page=show_problem&problem=4450) 
 -    [Codechef - Chef and Strings](https://www.codechef.com/problems/CHSTR) 

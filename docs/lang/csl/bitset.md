@@ -83,7 +83,7 @@ bitset<1000> bs;  // a bitset with 1000 bits
 
 ## 应用
 
-###  [LibreOJ β Round #2」贪心只能过样例](https://loj.ac/problem/515) 
+###  [「LibreOJ β Round #2」贪心只能过样例](https://loj.ac/problem/515) 
 
 这题可以用 dp 做，转移方程很简单：
 
@@ -216,6 +216,10 @@ $$
 ### 与树分块结合
 
  `bitset` 与树分块结合可以解决一类求树上多条路径信息并的问题，详见 [数据结构/树分块](../../ds/tree-decompose.md) 。
+
+### 与莫队结合
+
+详见 [杂项/莫队配合 bitset](../../misc/mo-algo-with-bitset.md) 。
 
 ### 计算高维偏序
 

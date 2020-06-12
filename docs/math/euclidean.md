@@ -179,7 +179,7 @@ $$
 
 在计算的时侯，因为 $3$ 个函数各有交错递归，因此可以考虑三个一起整体递归，同步计算，否则有很多项会被多次计算。这样实现的复杂度是 $O(\log n)$ 的。
 
-模板： [luogu5170](https://www.luogu.org/problemnew/show/P5170) 
+模板： [luogu5170](https://www.luogu.com.cn/problem/P5170) 
 
 ```cpp
 #include <bits/stdc++.h>
@@ -194,15 +194,13 @@ struct data {
 data calc(int n, int a, int b, int c) {
   int ac = a / c, bc = b / c, m = (a * n + b) / c, n1 = n + 1, n21 = n * 2 + 1;
   data d;
-  if (a == 0)  // 迭代到最底层
-  {
+  if (a == 0) {  // 迭代到最底层
     d.f = bc * n1 % P;
     d.g = bc * n % P * n1 % P * i2 % P;
     d.h = bc * bc % P * n1 % P;
     return d;
   }
-  if (a >= c || b >= c)  // 取模
-  {
+  if (a >= c || b >= c) {  // 取模
     d.f = n * n1 % P * i2 % P * ac % P + bc * n1 % P;
     d.g = ac * n % P * n1 % P * n21 % P * i6 % P + bc * n % P * n1 % P * i2 % P;
     d.h = ac * ac % P * n % P * n1 % P * n21 % P * i6 % P +

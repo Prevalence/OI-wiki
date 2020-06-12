@@ -2,7 +2,7 @@
 
 ## 定义
 
-对于矩阵 $A$ ，主对角线是指 $A[i][i]$ 的元素。
+对于矩阵 $A$ ，主对角线是指 $A_{i,i}$ 的元素。
 
 一般用 $I$ 来表示单位矩阵，就是主对角线上为 1，其余位置为 0。
 
@@ -78,17 +78,20 @@ inline mat operator*(const mat& T) const {
 struct mat {
   LL a[sz][sz];
   inline mat() { memset(a, 0, sizeof a); }
-  inline mat operator+(const mat& T) const {
-    mat res;
-    for (int i = 0; i < sz; ++i)
-      for (int j = 0; j < sz; ++j)
-        res.a[i][j] = (a[i][j] - T.a[i][j] + MOD) % MOD;
-    return res;
-  }
   inline mat operator-(const mat& T) const {
     mat res;
     for (int i = 0; i < sz; ++i)
-      for (int j = 0; j < sz; ++j) res.a[i][j] = (a[i][j] + T.a[i][j]) % MOD;
+      for (int j = 0; j < sz; ++j) {
+        res.a[i][j] = (a[i][j] - T.a[i][j]) % MOD;
+      }
+    return res;
+  }
+  inline mat operator+(const mat& T) const {
+    mat res;
+    for (int i = 0; i < sz; ++i)
+      for (int j = 0; j < sz; ++j) {
+        res.a[i][j] = (a[i][j] + T.a[i][j]) % MOD;
+      }
     return res;
   }
   inline mat operator*(const mat& T) const {
@@ -97,8 +100,8 @@ struct mat {
     for (int i = 0; i < sz; ++i)
       for (int k = 0; k < sz; ++k) {
         r = a[i][k];
-        for (int j = 0; j < sz; ++j) res.a[i][j] += T.a[k][j] * r;
-        res.a[i][j] %= MOD;
+        for (int j = 0; j < sz; ++j)
+          res.a[i][j] += T.a[k][j] * r, res.a[i][j] %= MOD;
       }
     return res;
   }
@@ -215,8 +218,8 @@ $$
 7 & 1 & 0 & 0 & 0\\
 6 & 0 & 0 & 0 & 0\\
 5 & 0 & 1 & 0 & 0\\
-4 & 0 & 0 & 3 & 0\\
-0 & 0 & 1 & 0 & 1
+12 & 0 & 0 & 3 & 0\\
+5 & 0 & 1 & 0 & 1
 \end{bmatrix}
 $$
 
@@ -397,8 +400,8 @@ $$
 
 ## 习题
 
--    [洛谷 P1962 斐波那契数列](https://www.luogu.org/problemnew/show/P1962) ，即上面的例题，同题 POJ3070
--    [洛谷 P1349 广义斐波那契数列](https://www.luogu.org/problemnew/show/P1349) ， $\text{base}$ 矩阵需要变化一下
--    [洛谷 P1939【模板】矩阵加速（数列）](https://www.luogu.org/problemnew/show/P1939) ， $\text{base}$ 矩阵变成了 $3 \times 3$ 的矩阵，推导过程与上面差不多。
+-    [洛谷 P1962 斐波那契数列](https://www.luogu.com.cn/problem/P1962) ，即上面的例题，同题 POJ3070
+-    [洛谷 P1349 广义斐波那契数列](https://www.luogu.com.cn/problem/P1349) ， $\text{base}$ 矩阵需要变化一下
+-    [洛谷 P1939【模板】矩阵加速（数列）](https://www.luogu.com.cn/problem/P1939) ， $\text{base}$ 矩阵变成了 $3 \times 3$ 的矩阵，推导过程与上面差不多。
 
      **本页面部分内容译自博文 [Кратчайшие пути фиксированной длины, количества путей фиксированной длины](http://e-maxx.ru/algo/fixed_length_paths) 与其英文翻译版 [Number of paths of fixed length/Shortest paths of fixed length](https://cp-algorithms.com/graph/fixed_length_paths.html) 。其中俄文版版权协议为 Public Domain + Leave a Link；英文版版权协议为 CC-BY-SA 4.0。** 

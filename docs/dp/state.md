@@ -1,6 +1,6 @@
-学习状压 dp 之前，请确认你已经完成了 [动态规划初步](/dp) 部分内容的学习。
+学习状压 dp 之前，请确认你已经完成了 [动态规划基础](./basic.md) 部分内容的学习。
 
-（同时建议学习 [位运算](/math/bit) 部分的内容）
+（同时建议学习 [位运算](../math/bit.md) 部分的内容）
 
 ## 状压 DP 简介
 
@@ -29,8 +29,7 @@
     long long sta[2005], sit[2005], f[15][2005][105];
     int n, k, cnt;
     void dfs(int x, int num, int cur) {
-      if (cur >= n)  //有新的合法状态
-      {
+      if (cur >= n) {  // 有新的合法状态
         sit[++cnt] = x;
         sta[cnt] = num;
         return;
@@ -41,7 +40,7 @@
     }
     int main() {
       cin >> n >> k;
-      dfs(0, 0, 0);  //先预处理一行的所有合法状态
+      dfs(0, 0, 0);  // 先预处理一行的所有合法状态
       for (int i = 1; i <= cnt; i++) f[1][i][sta[i]] = 1;
       for (int i = 2; i <= n; i++)
         for (int j = 1; j <= cnt; j++)
@@ -49,11 +48,11 @@
             if (sit[j] & sit[l]) continue;
             if ((sit[j] << 1) & sit[l]) continue;
             if (sit[j] & (sit[l] << 1)) continue;
-            //排除不合法转移
+            // 排除不合法转移
             for (int p = sta[j]; p <= k; p++) f[i][j][p] += f[i - 1][l][p - sta[j]];
           }
       long long ans = 0;
-      for (int i = 1; i <= cnt; i++) ans += f[n][i][k];  //累加答案
+      for (int i = 1; i <= cnt; i++) ans += f[n][i][k];  // 累加答案
       cout << ans << endl;
       return 0;
     }
@@ -61,10 +60,10 @@
 
 ## 几道练习题
 
- [NOI2001 炮兵阵地](https://www.luogu.org/problemnew/show/P2704) 
+ [NOI2001 炮兵阵地](https://loj.ac/problem/10173) 
 
- [\[USACO06NOV\]玉米田 Corn Fields](https://www.luogu.org/problemnew/show/P1879) 
+ [「USACO06NOV」玉米田 Corn Fields](https://www.luogu.com.cn/problem/P1879) 
 
- [AHOI2009 中国象棋](https://www.lydsy.com/JudgeOnline/problem.php?id=1801) 
+ [AHOI2009 中国象棋](https://www.luogu.com.cn/problem/P2051) 
 
- [九省联考 2018 一双木棋](https://www.luogu.org/problemnew/show/P4363) 
+ [九省联考 2018 一双木棋](https://loj.ac/problem/2471) 
